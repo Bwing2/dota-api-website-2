@@ -5,6 +5,8 @@ const cors = require("cors");
 const { ApolloServer } = require("@apollo/server");
 const { expressMiddleware } = require("@apollo/server/express4");
 
+var bcrypt = require("bcryptjs");
+var salt = 10;
 const path = require("path");
 
 const { authMiddleware } = require("./utils/auth");
