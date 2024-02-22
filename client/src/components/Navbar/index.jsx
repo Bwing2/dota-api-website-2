@@ -18,7 +18,11 @@ export default function Nav() {
           </>
         ) : (
           <>
-            <NavLink key={3} className="nav-link" to="/about">
+            <NavLink key={3} className="nav-link" to="/results">
+              Results
+            </NavLink>
+
+            <NavLink key={4} className="nav-link" to="/about">
               About
             </NavLink>
           </>

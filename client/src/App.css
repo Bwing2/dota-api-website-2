@@ -35,14 +35,19 @@ input {
   font-size: 20px;
 }
 
+/* Nav Bar CSS */
+
 .nav {
   display: flex;
   justify-content: center;
 }
 
+.nav-link {
+  padding: 20px;
+}
+
 .nav-item {
   text-decoration: none;
-  margin-left: 20px;
   list-style: none;
 }
 
@@ -160,12 +165,18 @@ input {
 }
 
 .filter-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter-div {
+  width: 50%;
   position: relative;
 }
 
 .filter-options {
   position: absolute;
   top: 100%;
-  left: 0;
   font-size: 20px;
 }
