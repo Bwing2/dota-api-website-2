@@ -10,7 +10,7 @@ export default function SearchModal({ showModal, setShowModal }) {
           X
         </button>
         <div className="modal-content">
-          <div>Enter Steam ID Here</div>
+          <div>Steam ID Search</div>
           <div>
             <input type="text" placeholder="Enter Steam ID Here" />
             <button className="search-id-button">Search</button>

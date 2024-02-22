@@ -29,12 +29,20 @@ export default function ScrollText() {
 
       <div className="description-text-div">
         <div
-          className={`fade-in-section ${inView2 ? "" : "fade-in"}`}
+          className={`fade-in-section column-container ${
+            inView2 ? "fade-in" : ""
+          }`}
           ref={ref2}
         >
-          <div className="image-text">
-            <div>Hello!</div>
+          <div className="image-text column-1">
+            <div>First Column Header</div>
             <div>Nice to meet you!</div>
+          </div>
+          <div className="image-text column-2">
+            <div>Next Column Header</div>
+          </div>
+          <div className="image-text column-3">
+            <div>Last Column Header</div>
           </div>
         </div>
       </div>
