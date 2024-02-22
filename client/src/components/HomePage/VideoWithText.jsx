@@ -1,6 +1,6 @@
 import ScrollText from "../HomePage/ScrollText";
 
-import homeVideo from "../../assets/images/dota-test-video.mp4";
+import homeVideo from "../../assets/images/dota_site_intro.mp4";
 import heroImage from "../../assets/images/dota-hero-image.jpg";
 
 export default function VideoWithText() {
