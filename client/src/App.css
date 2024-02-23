@@ -47,6 +47,7 @@ input {
 }
 
 .nav-item {
+  font-size: 20px;
   text-decoration: none;
   list-style: none;
 }
@@ -96,19 +97,6 @@ input {
 .home-description {
   font-size: 30px;
   margin: 10px 0;
-}
-
-.modal-button {
-  width: 40%;
-  padding: 10px;
-  margin: 10px 0;
-}
-
-.modal-button:hover,
-.search-id-button:hover {
-  color: var(--font-color);
-  cursor: pointer;
-  border: 2px solid var(--font-color);
 }
 
 .image-div {
@@ -161,6 +149,20 @@ input {
   border: 2px solid var(--bkrd-color);
 }
 
+.modal-button {
+  width: 40%;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 15px;
+}
+
+.modal-button:hover,
+.search-id-button:hover {
+  color: var(--font-color);
+  cursor: pointer;
+  border: 2px solid var(--font-color);
+}
+
 .close-button {
   position: absolute;
   top: 10px;
@@ -181,6 +183,14 @@ input {
   flex-direction: column;
 }
 
+.search-bar {
+  width: 100%;
+}
+
+.search-bar-input {
+  width: 80%;
+}
+
 .search-id-button {
   font-size: 20px;
 }
@@ -192,14 +202,28 @@ input {
 }
 
 .filter-div {
+  margin-top: 2%;
   width: 50%;
   position: relative;
 }
 
 .filter-options {
   position: absolute;
-  top: 100%;
+  top: 110%;
   font-size: 20px;
+}
+
+/* Results Page CSS */
+.bgResultsPage {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  /* top: 0; */
+  opacity: 0.5;
+  z-index: -2;
+  background-size: cover;
+  background-position: center;
+  background-image: url("../src/assets/images/dota-sky-background.jpg");
 }
 
 @media (max-width: 1000px) {

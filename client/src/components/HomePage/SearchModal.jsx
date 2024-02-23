@@ -15,6 +15,12 @@ export default function SearchModal({ showModal, setShowModal }) {
     navigate("/results", { state: { steamId } });
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      search();
+    }
+  };
+
   return (
     showModal && (
       <div className="search-modal">
@@ -23,12 +29,14 @@ export default function SearchModal({ showModal, setShowModal }) {
         </button>
         <div className="modal-content">
           <div>Steam ID Search</div>
-          <div>
+          <div className="search-bar">
             <input
               type="text"
-              placeholder="Enter Steam ID Here"
+              placeholder="Enter Steam ID or complete URL"
               value={steamId}
               onChange={(event) => setSteamId(event.target.value)}
+              onKeyDown={handleKeyDown}
+              className="search-bar-input"
             />
             <button className="search-id-button" onClick={search}>
               Search

@@ -1,7 +1,11 @@
+import ResultsDisplay from "../components/ResultsDisplay.jsx";
+
 export default function Results() {
   return (
     <div className="container">
-      <h1>Test Results</h1>
+      <div className="bgResultsPage">
+        <ResultsDisplay />
+      </div>
     </div>
   );
 }
