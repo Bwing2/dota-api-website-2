@@ -2,9 +2,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { playerIdSearch } from "../../utils/API";
 
+import FilterCheckboxes from "./FilterCheckboxes";
+
 export default function SearchModal({ showModal, setShowModal }) {
   const [showFilter, setShowFilter] = useState(false);
   const [steamId, setSteamId] = useState("");
+  const [longestGame, setLongestGame] = useState(false);
+  const [shortestGame, setShortestGame] = useState(false);
 
   // useNavigate hook allows for navigation to different parts of application
   const navigate = useNavigate();
@@ -12,7 +16,7 @@ export default function SearchModal({ showModal, setShowModal }) {
   const search = async () => {
     const data = await playerIdSearch(steamId);
     // takes 2 args, path which is required, and optional state object
-    navigate("/results", { state: { steamId } });
+    navigate("/results", { state: { steamId, longestGame, shortestGame } });
   };
 
   const handleKeyDown = (event) => {
@@ -50,26 +54,12 @@ export default function SearchModal({ showModal, setShowModal }) {
               Filter Results
             </button>
             {showFilter && (
-              <>
-                <div className="filter-options">
-                  <div>
-                    <input
-                      type="checkbox"
-                      id="longestGame"
-                      name="longestGame"
-                    />
-                    <label htmlFor="longestGame">Longest Game</label>
-                  </div>
-                  <div>
-                    <input
-                      type="checkbox"
-                      id="shortestGame"
-                      name="shortestGame"
-                    />
-                    <label htmlFor="shortestGame">Shortest Game</label>
-                  </div>
-                </div>
-              </>
+              <FilterCheckboxes
+                longestGame={longestGame}
+                setLongestGame={setLongestGame}
+                shortestGame={shortestGame}
+                setShortestGame={setShortestGame}
+              />
             )}
           </div>
         </div>
