@@ -1,7 +1,19 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { playerIdSearch } from "../../utils/API";
 
 export default function SearchModal({ showModal, setShowModal }) {
   const [showFilter, setShowFilter] = useState(false);
+  const [steamId, setSteamId] = useState("");
+
+  // useNavigate hook allows for navigation to different parts of application
+  const navigate = useNavigate();
+
+  const search = async () => {
+    const data = await playerIdSearch(steamId);
+    // takes 2 args, path which is required, and optional state object
+    navigate("/results", { state: { steamId } });
+  };
 
   return (
     showModal && (
@@ -12,8 +24,15 @@ export default function SearchModal({ showModal, setShowModal }) {
         <div className="modal-content">
           <div>Steam ID Search</div>
           <div>
-            <input type="text" placeholder="Enter Steam ID Here" />
-            <button className="search-id-button">Search</button>
+            <input
+              type="text"
+              placeholder="Enter Steam ID Here"
+              value={steamId}
+              onChange={(event) => setSteamId(event.target.value)}
+            />
+            <button className="search-id-button" onClick={search}>
+              Search
+            </button>
           </div>
           <div className="filter-div">
             <button
