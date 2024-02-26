@@ -1,25 +1,28 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { playerIdSearch } from "../../utils/API";
+import { playerIdSearch, fetchHeroes } from "../../utils/API";
 
 import MatchData from "./MatchData";
 
 export default function ResultsDisplay() {
   const [results, setResults] = useState([]);
+  const [heroes, setHeroes] = useState([]);
 
   const location = useLocation();
   // Check if location.state exists before trying to access steamId
   const steamId = location.state ? location.state.steamId : null;
 
-  // longestGame and shortestGame control state and if it is displayed
-  const longestGame = location.state ? location.state.longestGame : false;
-  const shortestGame = location.state ? location.state.shortestGame : false;
+  // longestMatch and shortestMatch control state and if it is displayed
+  const longestMatch = location.state ? location.state.longestMatch : false;
+  const shortestMatch = location.state ? location.state.shortestMatch : false;
 
   useEffect(() => {
     async function fetchData() {
       try {
         const data = await playerIdSearch(steamId);
         setResults(data);
+        const heroesData = await fetchHeroes();
+        setHeroes(heroesData);
       } catch (error) {
         console.error(error);
       }
@@ -38,8 +41,9 @@ export default function ResultsDisplay() {
       <MatchData
         matches={results}
         steamId={steamId}
-        longestGame={longestGame}
-        shortestGame={shortestGame}
+        longestMatch={longestMatch}
+        shortestMatch={shortestMatch}
+        heroes={heroes}
       />
       {/* {results &&
         results.map((result) => (

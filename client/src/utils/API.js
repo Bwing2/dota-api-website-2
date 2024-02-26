@@ -23,3 +23,13 @@ export async function playerIdSearch(accountId) {
     console.error(error);
   }
 }
+
+export async function fetchHeroes() {
+  try {
+    const response = await axios.get(`https://api.opendota.com/api/heroes`);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}

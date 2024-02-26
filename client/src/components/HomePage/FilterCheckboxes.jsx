@@ -1,36 +1,36 @@
 export default function FilterCheckboxes({
-  longestGame,
-  setLongestGame,
-  shortestGame,
-  setShortestGame,
+  longestMatch,
+  setLongestMatch,
+  shortestMatch,
+  setShortestMatch,
 }) {
   return (
     <div className="filter-options">
       <div>
         <input
           type="checkbox"
-          id="longestGame"
-          name="longestGame"
-          checked={longestGame}
+          id="longestMatch"
+          name="longestMatch"
+          checked={longestMatch}
           onChange={(event) => {
-            setLongestGame(event.target.checked);
-            console.log("Longest Game:", event.target.checked);
+            setLongestMatch(event.target.checked);
+            console.log("Longest Match:", event.target.checked);
           }}
         />
-        <label htmlFor="longestGame">Longest Game</label>
+        <label htmlFor="longestMatch">Longest Match</label>
       </div>
       <div>
         <input
           type="checkbox"
-          id="shortestGame"
-          name="shortestGame"
-          checked={shortestGame}
+          id="shortestMatch"
+          name="shortestMatch"
+          checked={shortestMatch}
           onChange={(event) => {
-            setShortestGame(event.target.checked);
-            console.log("Shortest Game:", event.target.checked);
+            setShortestMatch(event.target.checked);
+            console.log("Shortest Match:", event.target.checked);
           }}
         />
-        <label htmlFor="shortestGame">Shortest Game</label>
+        <label htmlFor="shortestMatch">Shortest Match</label>
       </div>
     </div>
   );
