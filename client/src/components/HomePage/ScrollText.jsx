@@ -4,11 +4,19 @@ import { useInView } from "react-intersection-observer";
 import SearchModal from "./SearchModal";
 import "./ScrollText.css";
 
-export default function ScrollText() {
+export default function ScrollText({ videoRef }) {
   const { ref: ref1, inView: inView1 } = useInView({ threshold: 0 });
   const { ref: ref2, inView: inView2 } = useInView({ threshold: 0 });
 
   const [showModal, setShowModal] = useState(false);
+
+  const pauseButton = () => {
+    if (videoRef.current.paused) {
+      videoRef.current.play();
+    } else {
+      videoRef.current.pause();
+    }
+  };
 
   return (
     <div className="text-container">
@@ -21,9 +29,14 @@ export default function ScrollText() {
           <div className="home-description">
             Track game stats, player stats, and more!
           </div>
-          <button className="modal-button" onClick={() => setShowModal(true)}>
-            Search By Player
-          </button>
+          <div className="button-div">
+            <button className="modal-button" onClick={() => setShowModal(true)}>
+              Search By Player
+            </button>
+            <button className="video-button" onClick={pauseButton}>
+              Play/Pause Video
+            </button>
+          </div>
         </div>
       </div>
 

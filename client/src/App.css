@@ -150,6 +150,11 @@ input:focus {
   border: 2px solid var(--bkrd-color);
 }
 
+.button-div {
+  display: flex;
+  flex-direction: column;
+}
+
 .modal-button {
   width: 40%;
   padding: 10px;
@@ -157,8 +162,14 @@ input:focus {
   font-size: 15px;
 }
 
+.video-button {
+  width: 40%;
+  padding: 5px;
+}
+
 .modal-button:hover,
-.search-id-button:hover {
+.search-id-button:hover,
+.video-button:hover {
   color: var(--font-color);
   cursor: pointer;
   border: 2px solid var(--font-color);
