@@ -7,16 +7,15 @@ import FilterCheckboxes from "./FilterCheckboxes";
 export default function SearchModal({ showModal, setShowModal }) {
   const [showFilter, setShowFilter] = useState(false);
   const [steamId, setSteamId] = useState("");
-  const [longestGame, setLongestGame] = useState(false);
-  const [shortestGame, setShortestGame] = useState(false);
+  const [longestMatch, setLongestMatch] = useState(false);
+  const [shortestMatch, setShortestMatch] = useState(false);
 
   // useNavigate hook allows for navigation to different parts of application
   const navigate = useNavigate();
 
-  const search = async () => {
-    const data = await playerIdSearch(steamId);
+  const search = () => {
     // takes 2 args, path which is required, and optional state object
-    navigate("/results", { state: { steamId, longestGame, shortestGame } });
+    navigate("/results", { state: { steamId, longestMatch, shortestMatch } });
   };
 
   const handleKeyDown = (event) => {
@@ -55,10 +54,10 @@ export default function SearchModal({ showModal, setShowModal }) {
             </button>
             {showFilter && (
               <FilterCheckboxes
-                longestGame={longestGame}
-                setLongestGame={setLongestGame}
-                shortestGame={shortestGame}
-                setShortestGame={setShortestGame}
+                longestMatch={longestMatch}
+                setLongestMatch={setLongestMatch}
+                shortestMatch={shortestMatch}
+                setShortestMatch={setShortestMatch}
               />
             )}
           </div>

@@ -23,3 +23,15 @@ export async function playerIdSearch(accountId) {
     console.error(error);
   }
 }
+
+export async function fetchHeroes() {
+  try {
+    const response = await axios.get(
+      `https://raw.githubusercontent.com/odota/dotaconstants/master/build/heroes.json`
+    );
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
