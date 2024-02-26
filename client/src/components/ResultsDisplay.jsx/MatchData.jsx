@@ -42,14 +42,20 @@ export default function MatchData({
           <h2>Longest Match</h2>
           <p>Match ID: {longestMatchData.match_id}</p>
           <p>Duration: {longestMatchData.duration} Minutes</p>
-          {heroes.length > 0 && (
-            <p>
-              {`Hero: 
-              ${
-                heroes.find((hero) => hero.id === longestMatchData.hero_id)
-                  .localized_name
-              }`}
-            </p>
+          {heroes[longestMatchData.hero_id] && (
+            <>
+              <div>
+                <p>Hero: {heroes[longestMatchData.hero_id].localized_name}</p>
+              </div>
+              <div>
+                <img
+                  src={`https://cdn.dota2.com${
+                    heroes[longestMatchData.hero_id].img
+                  }`}
+                  alt={heroes[longestMatchData.hero_id].localized_name}
+                />
+              </div>
+            </>
           )}
           <p>
             KDA: {longestMatchData.kills}/{longestMatchData.deaths}/
@@ -62,13 +68,20 @@ export default function MatchData({
           <h2>Shortest Match</h2>
           <p>Match ID: {shortestMatchData.match_id}</p>
           <p>Duration: {shortestMatchData.duration} Minutes</p>
-          {heroes.length > 0 && (
-            <p>
-              {`Hero: ${
-                heroes.find((hero) => hero.id === shortestMatchData.hero_id)
-                  .localized_name
-              }`}
-            </p>
+          {heroes[shortestMatchData.hero_id] && (
+            <>
+              <div>
+                <p>Hero: {heroes[shortestMatchData.hero_id].localized_name}</p>
+              </div>
+              <div>
+                <img
+                  src={`https://cdn.dota2.com${
+                    heroes[shortestMatchData.hero_id].img
+                  }`}
+                  alt={heroes[shortestMatchData.hero_id].localized_name}
+                />
+              </div>
+            </>
           )}
           <p>
             KDA: {shortestMatchData.kills}/{shortestMatchData.deaths}/

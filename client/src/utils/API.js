@@ -26,7 +26,9 @@ export async function playerIdSearch(accountId) {
 
 export async function fetchHeroes() {
   try {
-    const response = await axios.get(`https://api.opendota.com/api/heroes`);
+    const response = await axios.get(
+      `https://raw.githubusercontent.com/odota/dotaconstants/master/build/heroes.json`
+    );
     console.log(response.data);
     return response.data;
   } catch (error) {

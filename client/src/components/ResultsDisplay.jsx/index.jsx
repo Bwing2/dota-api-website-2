@@ -19,10 +19,12 @@ export default function ResultsDisplay() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const data = await playerIdSearch(steamId);
-        setResults(data);
-        const heroesData = await fetchHeroes();
-        setHeroes(heroesData);
+        if (steamId) {
+          const data = await playerIdSearch(steamId);
+          setResults(data);
+          const heroesData = await fetchHeroes();
+          setHeroes(heroesData);
+        }
       } catch (error) {
         console.error(error);
       }
