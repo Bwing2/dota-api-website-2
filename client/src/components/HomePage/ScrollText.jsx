@@ -30,7 +30,10 @@ export default function ScrollText({ videoRef }) {
             Track game stats, player stats, and more!
           </div>
           <div className="button-div">
-            <button className="modal-button" onClick={() => setShowModal(true)}>
+            <button
+              className="modal-button"
+              onClick={() => setShowModal(!showModal)}
+            >
               Search By Player
             </button>
             <button className="video-button" onClick={pauseButton}>
@@ -48,14 +51,25 @@ export default function ScrollText({ videoRef }) {
           ref={ref2}
         >
           <div className="image-text column-1">
-            <div>First Column Header</div>
-            <div>Nice to meet you!</div>
+            <div className="column-header">First Column Header</div>
+            <div className="description-1">
+              Nice to meet you! Did you know that certain facts are interesting?
+              I found this fact out that is very interesting.
+            </div>
           </div>
           <div className="image-text column-2">
-            <div>Next Column Header</div>
+            <div className="column-header">Next Column Header</div>
+            <div className="description-2">
+              Test column 2. Did you know that certain facts are interesting? I
+              found this fact out that is very interesting.
+            </div>
           </div>
           <div className="image-text column-3">
-            <div>Last Column Header</div>
+            <div className="column-header">Last Column Header</div>
+            <div className="description-3">
+              Test column 3. Did you know that certain facts are interesting? I
+              found this fact out that is very interesting.
+            </div>
           </div>
         </div>
       </div>
