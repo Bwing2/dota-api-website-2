@@ -9,12 +9,13 @@ export default function ResultsDisplay() {
   const [heroes, setHeroes] = useState([]);
 
   const location = useLocation();
-  // Check if location.state exists before trying to access steamId
-  const steamId = location.state ? location.state.steamId : null;
 
-  // longestMatch and shortestMatch control state and if it is displayed
-  const longestMatch = location.state ? location.state.longestMatch : false;
-  const shortestMatch = location.state ? location.state.shortestMatch : false;
+  let steamId, longestMatch, shortestMatch;
+
+  // Checks if location.state exists as they are undefined before if no state is passed in
+  if (location.state) {
+    ({ steamId, longestMatch, shortestMatch } = location.state);
+  }
 
   useEffect(() => {
     async function fetchData() {

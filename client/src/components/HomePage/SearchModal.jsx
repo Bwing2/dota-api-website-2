@@ -13,8 +13,7 @@ export default function SearchModal({ showModal, setShowModal }) {
   // useNavigate hook allows for navigation to different parts of application
   const navigate = useNavigate();
 
-  const search = async () => {
-    const data = await playerIdSearch(steamId);
+  const search = () => {
     // takes 2 args, path which is required, and optional state object
     navigate("/results", { state: { steamId, longestMatch, shortestMatch } });
   };
