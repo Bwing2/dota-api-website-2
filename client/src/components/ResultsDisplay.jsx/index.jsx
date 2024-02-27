@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { playerIdSearch, fetchHeroes } from "../../utils/API";
+import {
+  playerProfileSearch,
+  playerIdSearch,
+  fetchHeroes,
+} from "../../utils/API";
 
 import MatchData from "./MatchData";
 
 export default function ResultsDisplay() {
+  const [profile, setProfile] = useState([]);
   const [results, setResults] = useState([]);
   const [heroes, setHeroes] = useState([]);
 
@@ -21,10 +26,15 @@ export default function ResultsDisplay() {
     async function fetchData() {
       try {
         if (steamId) {
-          const data = await playerIdSearch(steamId);
-          setResults(data);
-          const heroesData = await fetchHeroes();
-          setHeroes(heroesData);
+          const user = await playerProfileSearch(steamId);
+          setProfile(user);
+
+          if (longestMatch || shortestMatch) {
+            const data = await playerIdSearch(steamId);
+            setResults(data);
+            const heroesData = await fetchHeroes();
+            setHeroes(heroesData);
+          }
         }
       } catch (error) {
         console.error(error);
@@ -32,7 +42,7 @@ export default function ResultsDisplay() {
     }
 
     fetchData();
-  }, [steamId]);
+  }, [steamId, longestMatch, shortestMatch]);
 
   if (!steamId) {
     return <h1>Please enter a Steam ID in the search bar.</h1>;
@@ -42,6 +52,7 @@ export default function ResultsDisplay() {
     <div>
       <h1>Search Results</h1>
       <MatchData
+        profile={profile}
         matches={results}
         steamId={steamId}
         longestMatch={longestMatch}

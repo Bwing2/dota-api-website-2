@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 
+import ProfileData from "./ProfileData";
+import MatchDataMap from "./MatchDataMap";
+
 export default function MatchData({
+  profile,
   matches,
   longestMatch,
   shortestMatch,
@@ -35,59 +39,26 @@ export default function MatchData({
     }
   }, [matches]);
 
+  if (!profile || !profile.profile) {
+    return;
+  }
+
   return (
     <div>
+      {profile && <ProfileData profile={profile} />}
       {longestMatch && longestMatchData && (
-        <div>
-          <h2>Longest Match</h2>
-          <p>Match ID: {longestMatchData.match_id}</p>
-          <p>Duration: {longestMatchData.duration} Minutes</p>
-          {heroes[longestMatchData.hero_id] && (
-            <>
-              <div>
-                <p>Hero: {heroes[longestMatchData.hero_id].localized_name}</p>
-              </div>
-              <div>
-                <img
-                  src={`https://cdn.dota2.com${
-                    heroes[longestMatchData.hero_id].img
-                  }`}
-                  alt={heroes[longestMatchData.hero_id].localized_name}
-                />
-              </div>
-            </>
-          )}
-          <p>
-            KDA: {longestMatchData.kills}/{longestMatchData.deaths}/
-            {longestMatchData.assists}
-          </p>
-        </div>
+        <MatchDataMap
+          matchData={longestMatchData}
+          matchTitle="Longest Match"
+          heroes={heroes}
+        />
       )}
       {shortestMatch && shortestMatchData && (
-        <div>
-          <h2>Shortest Match</h2>
-          <p>Match ID: {shortestMatchData.match_id}</p>
-          <p>Duration: {shortestMatchData.duration} Minutes</p>
-          {heroes[shortestMatchData.hero_id] && (
-            <>
-              <div>
-                <p>Hero: {heroes[shortestMatchData.hero_id].localized_name}</p>
-              </div>
-              <div>
-                <img
-                  src={`https://cdn.dota2.com${
-                    heroes[shortestMatchData.hero_id].img
-                  }`}
-                  alt={heroes[shortestMatchData.hero_id].localized_name}
-                />
-              </div>
-            </>
-          )}
-          <p>
-            KDA: {shortestMatchData.kills}/{shortestMatchData.deaths}/
-            {shortestMatchData.assists}
-          </p>
-        </div>
+        <MatchDataMap
+          matchData={shortestMatchData}
+          matchTitle="Shortest Match"
+          heroes={heroes}
+        />
       )}
     </div>
   );
