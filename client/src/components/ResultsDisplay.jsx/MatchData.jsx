@@ -40,11 +40,11 @@ export default function MatchData({
   }, [matches]);
 
   if (!profile || !profile.profile) {
-    return;
+    return null;
   }
 
   return (
-    <div>
+    <>
       {profile && <ProfileData profile={profile} />}
       {longestMatch && longestMatchData && (
         <MatchDataMap
@@ -60,6 +60,6 @@ export default function MatchData({
           heroes={heroes}
         />
       )}
-    </div>
+    </>
   );
 }

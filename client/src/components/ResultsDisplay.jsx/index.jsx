@@ -49,8 +49,8 @@ export default function ResultsDisplay() {
   }
 
   return (
-    <div>
-      <h1>Search Results</h1>
+    <div className="results-container">
+      {/* <h1>Search Results</h1> */}
       <MatchData
         profile={profile}
         matches={results}
