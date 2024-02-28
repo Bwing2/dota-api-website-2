@@ -7,11 +7,13 @@ import MatchDataMap from "./MatchDataMap";
 export default function MatchData({
   profile,
   matches,
+  recentMatch,
   longestMatch,
   shortestMatch,
   heroes,
 }) {
   // Specific matches use different API call for more indepth information on a match
+  const [specificRecentMatch, setSpecificRecentMatch] = useState([]);
   const [specificLongestMatch, setSpecificLongestMatch] = useState([]);
   const [specificShortestMatch, setSpecificShortestMatch] = useState([]);
 
@@ -43,9 +45,17 @@ export default function MatchData({
         longest.duration = Math.round(longest.duration / 60);
         shortest.duration = Math.round(shortest.duration / 60);
 
+        const recentMatch = matches[0];
+
         console.log(longest);
         console.log(shortest);
         console.log(longest.match_id);
+        console.log(recentMatch);
+
+        if (recentMatch) {
+          const recentMatchData = await fetchMatchData(recentMatch.match_id);
+          setSpecificRecentMatch(recentMatchData);
+        }
 
         // If longest and shortest match are truthy, fetches match by its id.
         if (longestMatch) {
@@ -60,7 +70,7 @@ export default function MatchData({
     };
 
     fetchMatches();
-  }, [matches, longestMatch, shortestMatch]);
+  }, [matches, recentMatch, longestMatch, shortestMatch]);
 
   if (!profile || !profile.profile) {
     return;
@@ -70,6 +80,13 @@ export default function MatchData({
     <>
       {/* Uses both matchData and specificMatchData from different API calls. */}
       {profile && <ProfileData profile={profile} />}
+      {recentMatch && (
+        <MatchDataMap
+          specificMatchData={specificRecentMatch}
+          matchTitle="Most Recent Match"
+          heroes={heroes}
+        />
+      )}
       {longestMatch && (
         <MatchDataMap
           specificMatchData={specificLongestMatch}
