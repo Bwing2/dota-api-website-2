@@ -1,15 +1,14 @@
 export default function ProfileData({ profile }) {
   return (
     <div className="profile-div">
-      <h2>Steam Profile</h2>
+      <h2>{profile.profile.personaname} Steam Profile</h2>
       <p>
-        Profile URL:{" "}
         <a
           href={profile.profile.profileurl}
           target="_blank"
           rel="noopener noreferrer"
         >
-          {profile.profile.profileurl}
+          Click here to go to Steam Profile
         </a>
       </p>
       <div className="profile-description-div">
