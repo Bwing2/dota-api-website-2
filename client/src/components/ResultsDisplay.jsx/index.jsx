@@ -16,12 +16,12 @@ export default function ResultsDisplay() {
   // useLocation is a custom hook that returns current location object, used to access location.state
   const location = useLocation();
 
-  let steamId, longestMatch, shortestMatch;
+  let steamId, recentMatch, longestMatch, shortestMatch;
 
   // Checks if location.state exists as they are undefined before if no state is passed in
   // Needs parentheses within if statement to be considered an object literal to destructure vs no parentheses being a block statement
   if (location.state) {
-    ({ steamId, longestMatch, shortestMatch } = location.state);
+    ({ steamId, recentMatch, longestMatch, shortestMatch } = location.state);
   }
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function ResultsDisplay() {
           const user = await playerProfileSearch(steamId);
           setProfile(user);
 
-          if (longestMatch || shortestMatch) {
+          if (recentMatch || longestMatch || shortestMatch) {
             const data = await playerIdSearch(steamId);
             setResults(data);
             const heroesData = await fetchHeroes();
@@ -44,7 +44,7 @@ export default function ResultsDisplay() {
     };
 
     fetchData();
-  }, [steamId, longestMatch, shortestMatch]);
+  }, [steamId, recentMatch, longestMatch, shortestMatch]);
 
   if (!steamId) {
     return <h1>Please enter a Steam ID in the search bar.</h1>;
@@ -56,6 +56,7 @@ export default function ResultsDisplay() {
         profile={profile}
         matches={results}
         steamId={steamId}
+        recentMatch={recentMatch}
         longestMatch={longestMatch}
         shortestMatch={shortestMatch}
         heroes={heroes}

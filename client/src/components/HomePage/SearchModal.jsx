@@ -6,15 +6,40 @@ import FilterCheckboxes from "./FilterCheckboxes";
 export default function SearchModal({ showModal, setShowModal }) {
   const [showFilter, setShowFilter] = useState(false);
   const [steamId, setSteamId] = useState("");
+
+  const [recentMatch, setRecentMatch] = useState(false);
   const [longestMatch, setLongestMatch] = useState(false);
   const [shortestMatch, setShortestMatch] = useState(false);
+
+  const filters = [
+    {
+      id: "recentMatch",
+      name: "Most Recent Match",
+      state: recentMatch,
+      setState: setRecentMatch,
+    },
+    {
+      id: "longestMatch",
+      name: "Longest Match",
+      state: longestMatch,
+      setState: setLongestMatch,
+    },
+    {
+      id: "shortestMatch",
+      name: "Shortest Match",
+      state: shortestMatch,
+      setState: setShortestMatch,
+    },
+  ];
 
   // useNavigate hook allows for navigation to different parts of application
   const navigate = useNavigate();
 
   const search = () => {
     // takes 2 args, path which is required, and optional state object
-    navigate("/results", { state: { steamId, longestMatch, shortestMatch } });
+    navigate("/results", {
+      state: { steamId, recentMatch, longestMatch, shortestMatch },
+    });
   };
 
   const handleKeyDown = (event) => {
@@ -51,14 +76,7 @@ export default function SearchModal({ showModal, setShowModal }) {
             >
               Filter Results
             </button>
-            {showFilter && (
-              <FilterCheckboxes
-                longestMatch={longestMatch}
-                setLongestMatch={setLongestMatch}
-                shortestMatch={shortestMatch}
-                setShortestMatch={setShortestMatch}
-              />
-            )}
+            {showFilter && <FilterCheckboxes filters={filters} />}
           </div>
         </div>
       </div>

@@ -46,16 +46,18 @@ export default function MatchDataMap({
                     <td>
                       {player.personaname
                         ? player.personaname
-                        : '"Name not found"'}
+                        : "Private Profile"}
                     </td>
                     <td>
                       <div className="hero-img-name">
-                        <img
-                          src={`https://cdn.dota2.com${
-                            heroes[player.hero_id].img
-                          }`}
-                          alt={heroes[player.hero_id].localized_name}
-                        />
+                        {heroes[player.hero_id] && (
+                          <img
+                            src={`https://cdn.dota2.com${
+                              heroes[player.hero_id].img
+                            }`}
+                            alt={heroes[player.hero_id].localized_name}
+                          />
+                        )}
                         {heroes[player.hero_id].localized_name}
                       </div>
                     </td>
@@ -97,7 +99,7 @@ export default function MatchDataMap({
                     <td>
                       {player.personaname
                         ? player.personaname
-                        : '"Name not found"'}
+                        : "Private Profile"}
                     </td>
                     <td>
                       <div className="hero-img-name">
