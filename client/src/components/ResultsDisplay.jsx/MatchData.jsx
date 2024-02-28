@@ -11,13 +11,9 @@ export default function MatchData({
   shortestMatch,
   heroes,
 }) {
-  // longestMatchData and shortestMatchData store the actual data to be displayed
-  const [longestFromAllMatches, setLongestFromAllMatches] = useState({});
-  const [shortestFromAllMatches, setShortestFromAllMatches] = useState({});
-
   // Specific matches use different API call for more indepth information on a match
-  const [specificLongestMatch, setSpecificLongestMatch] = useState({});
-  const [specificShortestMatch, setSpecificShortestMatch] = useState({});
+  const [specificLongestMatch, setSpecificLongestMatch] = useState([]);
+  const [specificShortestMatch, setSpecificShortestMatch] = useState([]);
 
   useEffect(() => {
     // Reuse this for longest or shortest API call.
@@ -51,10 +47,6 @@ export default function MatchData({
         console.log(shortest);
         console.log(longest.match_id);
 
-        // Sets the state of these equal to longest and shortest array from all matches
-        setLongestFromAllMatches(longest);
-        setShortestFromAllMatches(shortest);
-
         // If longest and shortest match are truthy, fetches match by its id.
         if (longestMatch) {
           const longestMatchData = await fetchMatchData(longest.match_id);
@@ -71,26 +63,23 @@ export default function MatchData({
   }, [matches, longestMatch, shortestMatch]);
 
   if (!profile || !profile.profile) {
-    return null;
+    return;
   }
 
   return (
     <>
       {/* Uses both matchData and specificMatchData from different API calls. */}
       {profile && <ProfileData profile={profile} />}
-      {longestMatch && longestFromAllMatches && (
+      {longestMatch && (
         <MatchDataMap
-          matchData={longestFromAllMatches}
-          specificLongestMatch={specificLongestMatch}
+          specificMatchData={specificLongestMatch}
           matchTitle="Longest Match"
           heroes={heroes}
         />
       )}
-      {shortestMatch && shortestFromAllMatches && (
+      {shortestMatch && (
         <MatchDataMap
-          matchData={shortestFromAllMatches}
-          specificShortestMatch={specificShortestMatch}
-          specifc
+          specificMatchData={specificShortestMatch}
           matchTitle="Shortest Match"
           heroes={heroes}
         />
