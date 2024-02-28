@@ -54,3 +54,15 @@ export async function fetchHeroes() {
     console.error(error);
   }
 }
+
+export async function fetchMatch(match_id) {
+  try {
+    const response = await axios.get(
+      `https://api.opendota.com/api/matches/${match_id}`
+    );
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}

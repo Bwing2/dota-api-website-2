@@ -23,7 +23,7 @@ export default function ResultsDisplay() {
   }
 
   useEffect(() => {
-    async function fetchData() {
+    const fetchData = async () => {
       try {
         if (steamId) {
           const user = await playerProfileSearch(steamId);
@@ -39,7 +39,7 @@ export default function ResultsDisplay() {
       } catch (error) {
         console.error(error);
       }
-    }
+    };
 
     fetchData();
   }, [steamId, longestMatch, shortestMatch]);

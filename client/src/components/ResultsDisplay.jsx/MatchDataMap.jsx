@@ -1,9 +1,9 @@
 export default function MatchDataMap({ matchData, matchTitle, heroes }) {
   return (
     <div className="profile-div">
-      <h2>{matchTitle}</h2>
-      <h3>{matchData.match_id}</h3>
-      <h4>{matchData.duration} Minutes</h4>
+      <div className="match-title">{matchTitle}</div>
+      <div className="match-id">Match ID: {matchData.match_id}</div>
+      <div className="match-duration">{matchData.duration} Minutes</div>
       <table>
         <thead>
           <tr>
@@ -17,7 +17,7 @@ export default function MatchDataMap({ matchData, matchTitle, heroes }) {
           <tr>
             <td>
               {heroes[matchData.hero_id] && (
-                <>
+                <div className="hero-img-name">
                   <img
                     src={`https://cdn.dota2.com${
                       heroes[matchData.hero_id].img
@@ -25,7 +25,7 @@ export default function MatchDataMap({ matchData, matchTitle, heroes }) {
                     alt={heroes[matchData.hero_id].localized_name}
                   />
                   {heroes[matchData.hero_id].localized_name}
-                </>
+                </div>
               )}
             </td>
             <td>{matchData.kills}</td>
