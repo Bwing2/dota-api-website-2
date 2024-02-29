@@ -2,9 +2,19 @@ export default function MatchDataMap({
   specificMatchData,
   matchTitle,
   heroes,
+  items,
 }) {
   const radiant = specificMatchData.players?.slice(0, 5);
   const dire = specificMatchData.players?.slice(5);
+  const itemArray = [
+    "item_0",
+    "item_1",
+    "item_2",
+    "item_3",
+    "item_4",
+    "item_5",
+  ];
+
   return (
     <div className="profile-div">
       <div className="match-title">{matchTitle}</div>
@@ -12,7 +22,7 @@ export default function MatchDataMap({
       <div className="match-duration">
         {Math.round(specificMatchData.duration / 60)} Minutes
       </div>
-      <div>
+      <div className="results-victory-score">
         <div className="team-victory">
           {specificMatchData.radiant_win ? "Radiant Victory" : "Dire Victory"}
         </div>
@@ -38,17 +48,18 @@ export default function MatchDataMap({
                   <th>Total Gold</th>
                   <th>Hero Damage</th>
                   <th>Total Healing</th>
+                  <th>Items</th>
                 </tr>
               </thead>
               <tbody>
                 {radiant?.map((player, playerIndex) => (
                   <tr key={playerIndex}>
-                    <td>
+                    <td className="name-column">
                       {player.personaname
                         ? player.personaname
                         : "Private Profile"}
                     </td>
-                    <td>
+                    <td className="hero-column">
                       <div className="hero-img-name">
                         {heroes[player.hero_id] && (
                           <img
@@ -70,6 +81,22 @@ export default function MatchDataMap({
                     <td>{player.total_gold}</td>
                     <td>{player.hero_damage}</td>
                     <td>{player.hero_healing}</td>
+                    <td>
+                      <div className="item-img">
+                        {itemArray.map(
+                          (itemId) =>
+                            items[player[itemId]] && (
+                              <img
+                                key={itemId}
+                                src={`https://cdn.dota2.com${
+                                  items[player[itemId]].img
+                                }`}
+                                alt={items[player[itemId]].dname}
+                              />
+                            )
+                        )}
+                      </div>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -91,17 +118,18 @@ export default function MatchDataMap({
                   <th>Total Gold</th>
                   <th>Hero Damage</th>
                   <th>Total Healing</th>
+                  <th>Items</th>
                 </tr>
               </thead>
               <tbody>
                 {dire?.map((player, playerIndex) => (
                   <tr key={playerIndex}>
-                    <td>
+                    <td className="name-column">
                       {player.personaname
                         ? player.personaname
                         : "Private Profile"}
                     </td>
-                    <td>
+                    <td className="hero-column">
                       <div className="hero-img-name">
                         <img
                           src={`https://cdn.dota2.com${
@@ -121,6 +149,22 @@ export default function MatchDataMap({
                     <td>{player.total_gold}</td>
                     <td>{player.hero_damage}</td>
                     <td>{player.hero_healing}</td>
+                    <td>
+                      <div className="item-img">
+                        {itemArray.map(
+                          (itemId) =>
+                            items[player[itemId]] && (
+                              <img
+                                key={itemId}
+                                src={`https://cdn.dota2.com${
+                                  items[player[itemId]].img
+                                }`}
+                                alt={items[player[itemId]].dname}
+                              />
+                            )
+                        )}
+                      </div>
+                    </td>
                   </tr>
                 ))}
               </tbody>

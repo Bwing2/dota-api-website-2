@@ -314,16 +314,49 @@ td {
   flex-direction: row;
 }
 
-.hero-img-name img {
-  height: 60%;
-  object-fit: cover;
-}
-
 .hero-img-name {
   height: 50px;
   display: flex;
   align-items: center;
   flex-direction: column-reverse;
+}
+
+.hero-img-name img {
+  height: 60%;
+  object-fit: cover;
+}
+
+.item-img {
+  height: 50px;
+  display: flex;
+}
+
+.item-img img {
+  height: 70%;
+}
+
+.name-column,
+.hero-column {
+  width: 15%;
+}
+
+.results-victory-score {
+  text-align: center;
+  font-size: 25px;
+}
+
+.radiant-players {
+  margin-bottom: 20px;
+  border: 2px solid greenyellow;
+}
+
+.dire-players {
+  margin-bottom: 20px;
+  border: 2px solid red;
+}
+
+th {
+  width: 10%;
 }
 
 @media (max-width: 1000px) {

@@ -55,6 +55,30 @@ export async function fetchHeroes() {
   }
 }
 
+export async function fetchItems() {
+  try {
+    const response = await axios.get(
+      `https://raw.githubusercontent.com/odota/dotaconstants/master/build/items.json`
+    );
+
+    const items = response.data;
+
+    // Item data is indexed by item name, and not item id so we can't use item id to find item name/images
+    // Created new object where keys are item ids and value is inside object
+    // Can use directly to find item data rather than searching for items for each player
+    const itemIds = {};
+    for (let key in items) {
+      const item = items[key];
+      itemIds[item.id] = item;
+    }
+
+    console.log(itemIds);
+    return itemIds;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function fetchMatch(match_id) {
   try {
     const response = await axios.get(

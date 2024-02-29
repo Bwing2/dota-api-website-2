@@ -4,6 +4,7 @@ import {
   playerProfileSearch,
   playerIdSearch,
   fetchHeroes,
+  fetchItems,
 } from "../../utils/API";
 
 import MatchData from "./MatchData";
@@ -12,6 +13,7 @@ export default function ResultsDisplay() {
   const [profile, setProfile] = useState([]);
   const [results, setResults] = useState([]);
   const [heroes, setHeroes] = useState([]);
+  const [items, setItems] = useState([]);
 
   // useLocation is a custom hook that returns current location object, used to access location.state
   const location = useLocation();
@@ -36,6 +38,8 @@ export default function ResultsDisplay() {
             setResults(data);
             const heroesData = await fetchHeroes();
             setHeroes(heroesData);
+            const itemsData = await fetchItems();
+            setItems(itemsData);
           }
         }
       } catch (error) {
@@ -60,6 +64,7 @@ export default function ResultsDisplay() {
         longestMatch={longestMatch}
         shortestMatch={shortestMatch}
         heroes={heroes}
+        items={items}
       />
     </div>
   );

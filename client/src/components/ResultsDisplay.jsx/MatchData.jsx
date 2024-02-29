@@ -11,6 +11,7 @@ export default function MatchData({
   longestMatch,
   shortestMatch,
   heroes,
+  items,
 }) {
   // Specific matches use different API call for more indepth information on a match
   const [specificRecentMatch, setSpecificRecentMatch] = useState([]);
@@ -85,6 +86,7 @@ export default function MatchData({
           specificMatchData={specificRecentMatch}
           matchTitle="Most Recent Match"
           heroes={heroes}
+          items={items}
         />
       )}
       {longestMatch && (
@@ -92,6 +94,7 @@ export default function MatchData({
           specificMatchData={specificLongestMatch}
           matchTitle="Longest Match"
           heroes={heroes}
+          items={items}
         />
       )}
       {shortestMatch && (
@@ -99,6 +102,7 @@ export default function MatchData({
           specificMatchData={specificShortestMatch}
           matchTitle="Shortest Match"
           heroes={heroes}
+          items={items}
         />
       )}
     </>
