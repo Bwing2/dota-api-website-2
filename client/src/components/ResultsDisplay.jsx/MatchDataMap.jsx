@@ -27,7 +27,9 @@ export default function MatchDataMap({
           {specificMatchData.radiant_win ? "Radiant Victory" : "Dire Victory"}
         </div>
         <div className="final-score">
-          {specificMatchData.radiant_score} | {specificMatchData.dire_score}
+          <div className="radiant-score">{specificMatchData.radiant_score}</div>
+          <div>|</div>
+          <div className="dire-score">{specificMatchData.dire_score}</div>
         </div>
       </div>
       {specificMatchData && (
@@ -83,7 +85,7 @@ export default function MatchDataMap({
                     <td>{player.hero_healing}</td>
                     <td>
                       <div className="item-img">
-                        {itemArray.map(
+                        {itemArray?.map(
                           (itemId) =>
                             items[player[itemId]] && (
                               <img

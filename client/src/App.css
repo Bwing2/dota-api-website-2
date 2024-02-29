@@ -345,14 +345,27 @@ td {
   font-size: 25px;
 }
 
+.final-score {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .radiant-players {
   margin-bottom: 20px;
   border: 2px solid greenyellow;
 }
 
+.radiant-score {
+  color: greenyellow;
+}
+
 .dire-players {
   margin-bottom: 20px;
   border: 2px solid red;
+}
+
+.dire-score {
+  color: red;
 }
 
 th {
