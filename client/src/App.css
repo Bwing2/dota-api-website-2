@@ -4,6 +4,7 @@
   --bkrd-color: black;
   --font-color: white;
   --button-color: red;
+  --radiant-color: yellowgreen;
 }
 
 * {
@@ -40,6 +41,10 @@ input {
 
 input:focus {
   outline-color: var(--bkrd-color);
+}
+
+ul {
+  padding-left: 0px;
 }
 
 p {
@@ -288,12 +293,12 @@ td {
   /* flex-direction: column; */
 }
 
-.profile-text {
+/* .profile-text {
   height: 100%;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-}
+} */
 
 .match-title {
   margin-top: 10px;
@@ -319,6 +324,7 @@ td {
   display: flex;
   align-items: center;
   flex-direction: column-reverse;
+  font-size: 12px;
 }
 
 .hero-img-name img {
@@ -350,25 +356,39 @@ td {
   justify-content: space-evenly;
 }
 
-.radiant-players {
+.radiant-table,
+.dire-table {
   margin-bottom: 20px;
-  border: 2px solid greenyellow;
 }
 
 .radiant-score {
-  color: greenyellow;
-}
-
-.dire-players {
-  margin-bottom: 20px;
-  border: 2px solid red;
+  color: var(--radiant-color);
 }
 
 .dire-score {
-  color: red;
+  color: var(--button-color);
+}
+
+.radiant-table-container,
+.dire-table-container {
+  overflow-x: auto;
+  max-width: 80vw;
+}
+
+.radiant-table-container {
+  border: 2px solid var(--radiant-color);
+}
+
+.dire-table-container {
+  border: 2px solid var(--button-color);
+}
+
+td {
+  padding: 5px 0px;
 }
 
 th {
+  padding: 10px;
   width: 10%;
 }
 
@@ -382,7 +402,14 @@ th {
   .description-text-div {
     padding-top: 60%;
   }
+  .profile-description-div {
+    height: auto;
+    flex-direction: column;
+  }
   .column-container {
     flex-direction: column;
+  }
+  .scrollable-table {
+    max-width: 100%;
   }
 }

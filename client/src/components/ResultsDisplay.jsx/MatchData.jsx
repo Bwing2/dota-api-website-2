@@ -81,7 +81,7 @@ export default function MatchData({
     <>
       {/* Uses both matchData and specificMatchData from different API calls. */}
       {profile && <ProfileData profile={profile} />}
-      {recentMatch && (
+      {recentMatch && heroes && (
         <MatchDataMap
           specificMatchData={specificRecentMatch}
           matchTitle="Most Recent Match"
@@ -89,7 +89,7 @@ export default function MatchData({
           items={items}
         />
       )}
-      {longestMatch && (
+      {longestMatch && heroes && (
         <MatchDataMap
           specificMatchData={specificLongestMatch}
           matchTitle="Longest Match"
@@ -97,7 +97,7 @@ export default function MatchData({
           items={items}
         />
       )}
-      {shortestMatch && (
+      {shortestMatch && heroes && (
         <MatchDataMap
           specificMatchData={specificShortestMatch}
           matchTitle="Shortest Match"
