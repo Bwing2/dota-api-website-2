@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 import {
   playerProfileSearch,
   playerIdSearch,
   fetchHeroes,
+  fetchItems,
 } from "../../utils/API";
 
 import MatchData from "./MatchData";
@@ -12,6 +14,9 @@ export default function ResultsDisplay() {
   const [profile, setProfile] = useState([]);
   const [results, setResults] = useState([]);
   const [heroes, setHeroes] = useState([]);
+  const [items, setItems] = useState([]);
+
+  const [loading, setLoading] = useState(true);
 
   // useLocation is a custom hook that returns current location object, used to access location.state
   const location = useLocation();
@@ -25,6 +30,7 @@ export default function ResultsDisplay() {
   }
 
   useEffect(() => {
+    setLoading(true);
     const fetchData = async () => {
       try {
         if (steamId) {
@@ -36,10 +42,14 @@ export default function ResultsDisplay() {
             setResults(data);
             const heroesData = await fetchHeroes();
             setHeroes(heroesData);
+            const itemsData = await fetchItems();
+            setItems(itemsData);
           }
         }
       } catch (error) {
         console.error(error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -52,15 +62,23 @@ export default function ResultsDisplay() {
 
   return (
     <div className="results-container">
-      <MatchData
-        profile={profile}
-        matches={results}
-        steamId={steamId}
-        recentMatch={recentMatch}
-        longestMatch={longestMatch}
-        shortestMatch={shortestMatch}
-        heroes={heroes}
-      />
+      {loading ? (
+        <div className="loader-container">
+          <div className="loading-text">Loading...</div>
+          <ClipLoader color="red" loading={loading} size={100} />
+        </div>
+      ) : (
+        <MatchData
+          profile={profile}
+          matches={results}
+          steamId={steamId}
+          recentMatch={recentMatch}
+          longestMatch={longestMatch}
+          shortestMatch={shortestMatch}
+          heroes={heroes}
+          items={items}
+        />
+      )}
     </div>
   );
 }

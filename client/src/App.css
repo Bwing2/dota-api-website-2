@@ -4,6 +4,7 @@
   --bkrd-color: black;
   --font-color: white;
   --button-color: red;
+  --radiant-color: yellowgreen;
 }
 
 * {
@@ -40,6 +41,10 @@ input {
 
 input:focus {
   outline-color: var(--bkrd-color);
+}
+
+ul {
+  padding-left: 0px;
 }
 
 p {
@@ -254,8 +259,8 @@ td {
 /* Results Page CSS */
 .bgResultsPage {
   width: 100%;
-  height: 100%;
-  position: absolute;
+  min-height: 100vh;
+  position: fixed;
   top: 0;
   opacity: 0.5;
   z-index: -2;
@@ -288,12 +293,25 @@ td {
   /* flex-direction: column; */
 }
 
-.profile-text {
+.loader-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loading-text {
+  position: absolute;
+  z-index: 1;
+}
+
+/* .profile-text {
   height: 100%;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-}
+} */
 
 .match-title {
   margin-top: 10px;
@@ -314,16 +332,77 @@ td {
   flex-direction: row;
 }
 
-.hero-img-name img {
-  height: 60%;
-  object-fit: cover;
-}
-
 .hero-img-name {
   height: 50px;
   display: flex;
   align-items: center;
   flex-direction: column-reverse;
+  font-size: 12px;
+}
+
+.hero-img-name img {
+  height: 60%;
+  object-fit: cover;
+}
+
+.item-img {
+  height: 50px;
+  display: flex;
+}
+
+.item-img img {
+  height: 70%;
+}
+
+.name-column,
+.hero-column {
+  width: 15%;
+}
+
+.results-victory-score {
+  text-align: center;
+  font-size: 25px;
+}
+
+.final-score {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.radiant-table,
+.dire-table {
+  margin-bottom: 20px;
+}
+
+.radiant-score {
+  color: var(--radiant-color);
+}
+
+.dire-score {
+  color: var(--button-color);
+}
+
+.radiant-table-container,
+.dire-table-container {
+  overflow-x: auto;
+  max-width: 80vw;
+}
+
+.radiant-table-container {
+  border: 2px solid var(--radiant-color);
+}
+
+.dire-table-container {
+  border: 2px solid var(--button-color);
+}
+
+td {
+  padding: 5px 0px;
+}
+
+th {
+  padding: 10px;
+  width: 10%;
 }
 
 @media (max-width: 1000px) {
@@ -336,7 +415,14 @@ td {
   .description-text-div {
     padding-top: 60%;
   }
+  .profile-description-div {
+    height: auto;
+    flex-direction: column;
+  }
   .column-container {
     flex-direction: column;
+  }
+  .scrollable-table {
+    max-width: 100%;
   }
 }

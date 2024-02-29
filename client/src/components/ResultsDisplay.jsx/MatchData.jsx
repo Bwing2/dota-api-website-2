@@ -11,6 +11,7 @@ export default function MatchData({
   longestMatch,
   shortestMatch,
   heroes,
+  items,
 }) {
   // Specific matches use different API call for more indepth information on a match
   const [specificRecentMatch, setSpecificRecentMatch] = useState([]);
@@ -80,25 +81,28 @@ export default function MatchData({
     <>
       {/* Uses both matchData and specificMatchData from different API calls. */}
       {profile && <ProfileData profile={profile} />}
-      {recentMatch && (
+      {recentMatch && heroes && (
         <MatchDataMap
           specificMatchData={specificRecentMatch}
           matchTitle="Most Recent Match"
           heroes={heroes}
+          items={items}
         />
       )}
-      {longestMatch && (
+      {longestMatch && heroes && (
         <MatchDataMap
           specificMatchData={specificLongestMatch}
           matchTitle="Longest Match"
           heroes={heroes}
+          items={items}
         />
       )}
-      {shortestMatch && (
+      {shortestMatch && heroes && (
         <MatchDataMap
           specificMatchData={specificShortestMatch}
           matchTitle="Shortest Match"
           heroes={heroes}
+          items={items}
         />
       )}
     </>
