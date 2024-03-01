@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 import FilterCheckboxes from "./FilterCheckboxes";
 
 export default function SearchModal({ showModal, setShowModal }) {
-  const [showFilter, setShowFilter] = useState(false);
   const [steamId, setSteamId] = useState("");
+  const [matchId, setMatchId] = useState("");
 
+  const [showFilter, setShowFilter] = useState(false);
   const [recentMatch, setRecentMatch] = useState(false);
   const [longestMatch, setLongestMatch] = useState(false);
   const [shortestMatch, setShortestMatch] = useState(false);
@@ -38,7 +39,7 @@ export default function SearchModal({ showModal, setShowModal }) {
   const search = () => {
     // takes 2 args, path which is required, and optional state object
     navigate("/results", {
-      state: { steamId, recentMatch, longestMatch, shortestMatch },
+      state: { steamId, matchId, recentMatch, longestMatch, shortestMatch },
     });
   };
 
@@ -60,8 +61,12 @@ export default function SearchModal({ showModal, setShowModal }) {
             <input
               type="text"
               placeholder="Enter Steam ID or complete URL"
-              value={steamId}
-              onChange={(event) => setSteamId(event.target.value)}
+              value={steamId || matchId}
+              onChange={(event) => {
+                event.target.value.length === 10
+                  ? setMatchId(event.target.value)
+                  : setSteamId(event.target.value);
+              }}
               onKeyDown={handleKeyDown}
               className="search-bar-input"
             />

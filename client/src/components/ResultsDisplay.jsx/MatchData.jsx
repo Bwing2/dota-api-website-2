@@ -7,13 +7,16 @@ import MatchDataMap from "./MatchDataMap";
 export default function MatchData({
   profile,
   matches,
+  searched,
   recentMatch,
   longestMatch,
   shortestMatch,
   heroes,
   items,
+  matchId,
 }) {
   // Specific matches use different API call for more indepth information on a match
+  const [specificSearchedMatch, setSpecificSearchedMatch] = useState([]);
   const [specificRecentMatch, setSpecificRecentMatch] = useState([]);
   const [specificLongestMatch, setSpecificLongestMatch] = useState([]);
   const [specificShortestMatch, setSpecificShortestMatch] = useState([]);
@@ -29,7 +32,19 @@ export default function MatchData({
       }
     };
 
+    // console.log("searched:", searched);
+    // console.log("heroes:", heroes);
+    // console.log("items:", items);
+
     const fetchMatches = async () => {
+      if (searched && searched.match_id) {
+        // console.log("searched.match_id:", searched.match_id);
+        const searchedMatchData = await fetchMatchData(searched.match_id);
+        // console.log("searchedMatchData:", searchedMatchData);
+        setSpecificSearchedMatch(searchedMatchData);
+        return;
+      }
+
       if (matches.length > 0) {
         let longest = matches[0];
         let shortest = matches[0];
@@ -71,16 +86,24 @@ export default function MatchData({
     };
 
     fetchMatches();
-  }, [matches, recentMatch, longestMatch, shortestMatch]);
+  }, [matches, searched, recentMatch, longestMatch, shortestMatch]);
 
-  if (!profile || !profile.profile) {
+  if (!profile && !profile.profile && !searched) {
     return;
   }
 
   return (
     <>
       {/* Uses both matchData and specificMatchData from different API calls. */}
-      {profile && <ProfileData profile={profile} />}
+      {profile && profile.profile && <ProfileData profile={profile} />}
+      {searched && searched.match_id && (
+        <MatchDataMap
+          specificMatchData={specificSearchedMatch}
+          matchTitle="Searched Match"
+          heroes={heroes}
+          items={items}
+        />
+      )}
       {recentMatch && heroes && (
         <MatchDataMap
           specificMatchData={specificRecentMatch}

@@ -345,13 +345,22 @@ td {
   object-fit: cover;
 }
 
-.item-img {
+.item-img,
+.neutral-item-img {
   height: 50px;
+}
+
+.item-img {
   display: flex;
 }
 
-.item-img img {
+.item-img img,
+.neutral-item-img img {
   height: 70%;
+}
+
+.neutral-item-img img {
+  border-radius: 50%;
 }
 
 .name-column,

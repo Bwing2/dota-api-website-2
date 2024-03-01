@@ -6,6 +6,7 @@ import {
   playerIdSearch,
   fetchHeroes,
   fetchItems,
+  fetchMatch,
 } from "../../utils/API";
 
 import MatchData from "./MatchData";
@@ -13,6 +14,7 @@ import MatchData from "./MatchData";
 export default function ResultsDisplay() {
   const [profile, setProfile] = useState([]);
   const [results, setResults] = useState([]);
+  const [specificMatch, setSpecificMatch] = useState([]);
   const [heroes, setHeroes] = useState([]);
   const [items, setItems] = useState([]);
 
@@ -21,12 +23,13 @@ export default function ResultsDisplay() {
   // useLocation is a custom hook that returns current location object, used to access location.state
   const location = useLocation();
 
-  let steamId, recentMatch, longestMatch, shortestMatch;
+  let steamId, matchId, recentMatch, longestMatch, shortestMatch;
 
   // Checks if location.state exists as they are undefined before if no state is passed in
   // Needs parentheses within if statement to be considered an object literal to destructure vs no parentheses being a block statement
   if (location.state) {
-    ({ steamId, recentMatch, longestMatch, shortestMatch } = location.state);
+    ({ steamId, matchId, recentMatch, longestMatch, shortestMatch } =
+      location.state);
   }
 
   useEffect(() => {
@@ -45,6 +48,13 @@ export default function ResultsDisplay() {
             const itemsData = await fetchItems();
             setItems(itemsData);
           }
+        } else if (matchId) {
+          const match = await fetchMatch(matchId);
+          setSpecificMatch(match);
+          const heroesData = await fetchHeroes();
+          setHeroes(heroesData);
+          const itemsData = await fetchItems();
+          setItems(itemsData);
         }
       } catch (error) {
         console.error(error);
@@ -54,10 +64,10 @@ export default function ResultsDisplay() {
     };
 
     fetchData();
-  }, [steamId, recentMatch, longestMatch, shortestMatch]);
+  }, [steamId, matchId, recentMatch, longestMatch, shortestMatch]);
 
-  if (!steamId) {
-    return <h1>Please enter a Steam ID in the search bar.</h1>;
+  if (!steamId && !matchId) {
+    return <h1>Please enter a Steam ID or Match ID in the search bar.</h1>;
   }
 
   return (
@@ -72,6 +82,8 @@ export default function ResultsDisplay() {
           profile={profile}
           matches={results}
           steamId={steamId}
+          searched={specificMatch}
+          matchId={matchId}
           recentMatch={recentMatch}
           longestMatch={longestMatch}
           shortestMatch={shortestMatch}
