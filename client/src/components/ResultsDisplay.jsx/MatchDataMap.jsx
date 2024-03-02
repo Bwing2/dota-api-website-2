@@ -15,12 +15,12 @@ export default function MatchDataMap({
     "item_5",
   ];
 
-  console.log("MatchDataMap is being rendered");
-  console.log("specificMatchData:", specificMatchData);
-  console.log("radiant:", radiant);
-  console.log("dire:", dire);
-  console.log("heroes:", heroes);
-  console.log("items:", items);
+  // console.log("MatchDataMap is being rendered");
+  // console.log("specificMatchData:", specificMatchData);
+  // console.log("radiant:", radiant);
+  // console.log("dire:", dire);
+  // console.log("heroes:", heroes);
+  // console.log("items:", items);
 
   return (
     <div className="profile-div">

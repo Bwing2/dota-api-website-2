@@ -55,17 +55,22 @@ export default function SearchModal({ showModal, setShowModal }) {
         <button className="close-button" onClick={() => setShowModal(false)}>
           X
         </button>
+
         <div className="modal-content">
-          <div>Steam ID Search</div>
+          <div>Search</div>
           <div className="search-bar">
             <input
               type="text"
-              placeholder="Enter Steam ID or complete URL"
+              placeholder="Enter Steam ID, complete Steam URL, or match ID"
               value={steamId || matchId}
               onChange={(event) => {
-                event.target.value.length === 10
-                  ? setMatchId(event.target.value)
-                  : setSteamId(event.target.value);
+                if (!isNaN(event.target.value)) {
+                  setMatchId(event.target.value);
+                  setSteamId("");
+                } else {
+                  setSteamId(event.target.value);
+                  setMatchId("");
+                }
               }}
               onKeyDown={handleKeyDown}
               className="search-bar-input"
@@ -74,12 +79,17 @@ export default function SearchModal({ showModal, setShowModal }) {
               Search
             </button>
           </div>
+          {matchId.length === 10 && (
+            <div className="filter-match">
+              Filters don't work when searching by Match ID.
+            </div>
+          )}
           <div className="filter-div">
             <button
               className="search-id-button"
               onClick={() => setShowFilter(!showFilter)}
             >
-              Filter Results
+              Filter Profile Specific Results
             </button>
             {showFilter && <FilterCheckboxes filters={filters} />}
           </div>

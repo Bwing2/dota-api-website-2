@@ -16,7 +16,6 @@ export default function MatchData({
   matchId,
 }) {
   // Specific matches use different API call for more indepth information on a match
-  const [specificSearchedMatch, setSpecificSearchedMatch] = useState([]);
   const [specificRecentMatch, setSpecificRecentMatch] = useState([]);
   const [specificLongestMatch, setSpecificLongestMatch] = useState([]);
   const [specificShortestMatch, setSpecificShortestMatch] = useState([]);
@@ -37,14 +36,6 @@ export default function MatchData({
     // console.log("items:", items);
 
     const fetchMatches = async () => {
-      if (searched && searched.match_id) {
-        // console.log("searched.match_id:", searched.match_id);
-        const searchedMatchData = await fetchMatchData(searched.match_id);
-        // console.log("searchedMatchData:", searchedMatchData);
-        setSpecificSearchedMatch(searchedMatchData);
-        return;
-      }
-
       if (matches.length > 0) {
         let longest = matches[0];
         let shortest = matches[0];
@@ -98,35 +89,39 @@ export default function MatchData({
       {profile && profile.profile && <ProfileData profile={profile} />}
       {searched && searched.match_id && (
         <MatchDataMap
-          specificMatchData={specificSearchedMatch}
+          specificMatchData={searched}
           matchTitle="Searched Match"
           heroes={heroes}
           items={items}
         />
       )}
-      {recentMatch && heroes && (
-        <MatchDataMap
-          specificMatchData={specificRecentMatch}
-          matchTitle="Most Recent Match"
-          heroes={heroes}
-          items={items}
-        />
-      )}
-      {longestMatch && heroes && (
-        <MatchDataMap
-          specificMatchData={specificLongestMatch}
-          matchTitle="Longest Match"
-          heroes={heroes}
-          items={items}
-        />
-      )}
-      {shortestMatch && heroes && (
-        <MatchDataMap
-          specificMatchData={specificShortestMatch}
-          matchTitle="Shortest Match"
-          heroes={heroes}
-          items={items}
-        />
+      {!matchId && (
+        <>
+          {recentMatch && heroes && (
+            <MatchDataMap
+              specificMatchData={specificRecentMatch}
+              matchTitle="Most Recent Match"
+              heroes={heroes}
+              items={items}
+            />
+          )}
+          {longestMatch && heroes && (
+            <MatchDataMap
+              specificMatchData={specificLongestMatch}
+              matchTitle="Longest Match"
+              heroes={heroes}
+              items={items}
+            />
+          )}
+          {shortestMatch && heroes && (
+            <MatchDataMap
+              specificMatchData={specificShortestMatch}
+              matchTitle="Shortest Match"
+              heroes={heroes}
+              items={items}
+            />
+          )}
+        </>
       )}
     </>
   );
