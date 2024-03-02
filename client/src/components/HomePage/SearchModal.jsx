@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 import FilterCheckboxes from "./FilterCheckboxes";
 
 export default function SearchModal({ showModal, setShowModal }) {
-  const [showFilter, setShowFilter] = useState(false);
   const [steamId, setSteamId] = useState("");
+  const [matchId, setMatchId] = useState("");
 
+  const [showFilter, setShowFilter] = useState(false);
   const [recentMatch, setRecentMatch] = useState(false);
   const [longestMatch, setLongestMatch] = useState(false);
   const [shortestMatch, setShortestMatch] = useState(false);
@@ -38,7 +39,7 @@ export default function SearchModal({ showModal, setShowModal }) {
   const search = () => {
     // takes 2 args, path which is required, and optional state object
     navigate("/results", {
-      state: { steamId, recentMatch, longestMatch, shortestMatch },
+      state: { steamId, matchId, recentMatch, longestMatch, shortestMatch },
     });
   };
 
@@ -54,14 +55,23 @@ export default function SearchModal({ showModal, setShowModal }) {
         <button className="close-button" onClick={() => setShowModal(false)}>
           X
         </button>
+
         <div className="modal-content">
-          <div>Steam ID Search</div>
+          <div>Search</div>
           <div className="search-bar">
             <input
               type="text"
-              placeholder="Enter Steam ID or complete URL"
-              value={steamId}
-              onChange={(event) => setSteamId(event.target.value)}
+              placeholder="Enter Steam ID, complete Steam URL, or match ID"
+              value={steamId || matchId}
+              onChange={(event) => {
+                if (!isNaN(event.target.value)) {
+                  setMatchId(event.target.value);
+                  setSteamId("");
+                } else {
+                  setSteamId(event.target.value);
+                  setMatchId("");
+                }
+              }}
               onKeyDown={handleKeyDown}
               className="search-bar-input"
             />
@@ -69,12 +79,17 @@ export default function SearchModal({ showModal, setShowModal }) {
               Search
             </button>
           </div>
+          {matchId.length === 10 && (
+            <div className="filter-match">
+              Filters don't work when searching by Match ID.
+            </div>
+          )}
           <div className="filter-div">
             <button
               className="search-id-button"
               onClick={() => setShowFilter(!showFilter)}
             >
-              Filter Results
+              Filter Profile Specific Results
             </button>
             {showFilter && <FilterCheckboxes filters={filters} />}
           </div>

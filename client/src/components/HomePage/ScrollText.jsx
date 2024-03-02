@@ -34,7 +34,7 @@ export default function ScrollText({ videoRef }) {
               className="modal-button"
               onClick={() => setShowModal(!showModal)}
             >
-              Search By Player
+              Search Now!
             </button>
             <button className="video-button" onClick={pauseButton}>
               Play/Pause Video

@@ -4,8 +4,8 @@ export default function MatchDataMap({
   heroes,
   items,
 }) {
-  const radiant = specificMatchData.players?.slice(0, 5);
-  const dire = specificMatchData.players?.slice(5);
+  const radiant = specificMatchData.players?.slice(0, 5) || [];
+  const dire = specificMatchData.players?.slice(5) || [];
   const itemArray = [
     "item_0",
     "item_1",
@@ -14,6 +14,13 @@ export default function MatchDataMap({
     "item_4",
     "item_5",
   ];
+
+  // console.log("MatchDataMap is being rendered");
+  // console.log("specificMatchData:", specificMatchData);
+  // console.log("radiant:", radiant);
+  // console.log("dire:", dire);
+  // console.log("heroes:", heroes);
+  // console.log("items:", items);
 
   return (
     <div className="profile-div">
@@ -58,6 +65,7 @@ export default function MatchDataMap({
                     <th>Hero Damage</th>
                     <th>Total Healing</th>
                     <th>Items</th>
+                    <th>Neutral Item</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -101,8 +109,22 @@ export default function MatchDataMap({
                                     items[player[itemId]].img
                                   }`}
                                   alt={items[player[itemId]].dname}
+                                  title={items[player[itemId]].dname}
                                 />
                               )
+                          )}
+                        </div>
+                      </td>
+                      <td>
+                        <div className="neutral-item-img">
+                          {items[player["item_neutral"]] && (
+                            <img
+                              src={`https://cdn.dota2.com${
+                                items[player["item_neutral"]].img
+                              }`}
+                              alt={items[player["item_neutral"].dname]}
+                              title={items[player["item_neutral"]].dname}
+                            />
                           )}
                         </div>
                       </td>
@@ -130,6 +152,7 @@ export default function MatchDataMap({
                     <th>Hero Damage</th>
                     <th>Total Healing</th>
                     <th>Items</th>
+                    <th>Neutral Item</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -171,8 +194,22 @@ export default function MatchDataMap({
                                     items[player[itemId]].img
                                   }`}
                                   alt={items[player[itemId]].dname}
+                                  title={items[player[itemId]].dname}
                                 />
                               )
+                          )}
+                        </div>
+                      </td>
+                      <td>
+                        <div className="neutral-item-img">
+                          {items[player["item_neutral"]] && (
+                            <img
+                              src={`https://cdn.dota2.com${
+                                items[player["item_neutral"]].img
+                              }`}
+                              alt={items[player["item_neutral"].dname]}
+                              title={items[player["item_neutral"]].dname}
+                            />
                           )}
                         </div>
                       </td>
