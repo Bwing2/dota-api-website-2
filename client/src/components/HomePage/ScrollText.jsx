@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
+import { TypeAnimation } from "react-type-animation";
 
 import SearchModal from "./SearchModal";
 import "./ScrollText.css";
@@ -27,7 +29,19 @@ export default function ScrollText({ videoRef }) {
         >
           <div className="home-title">Dota 2 Stats Tracker</div>
           <div className="home-description">
-            Track game stats, player stats, and more!
+            <TypeAnimation
+              sequence={[
+                "Track player profiles",
+                1000,
+                "Track player matches",
+                1000,
+                "Track specific match ID's",
+                1000,
+              ]}
+              wrapper="span"
+              speed={50}
+              // repeat={Infinity}
+            />
           </div>
           <div className="button-div">
             <button
@@ -51,24 +65,24 @@ export default function ScrollText({ videoRef }) {
           ref={ref2}
         >
           <div className="image-text column-1">
-            <div className="column-header">First Column Header</div>
+            <div className="column-header">Search Player Stats</div>
             <div className="description-1">
-              Nice to meet you! Did you know that certain facts are interesting?
-              I found this fact out that is very interesting.
+              Discover new ways to see match statistics on all of your friends.
             </div>
           </div>
           <div className="image-text column-2">
-            <div className="column-header">Next Column Header</div>
+            <div className="column-header">Sign Up / Login Functionality</div>
             <div className="description-2">
-              Test column 2. Did you know that certain facts are interesting? I
-              found this fact out that is very interesting.
+              Create an account to save specific matches, and see more in depth
+              stats!
             </div>
           </div>
           <div className="image-text column-3">
-            <div className="column-header">Last Column Header</div>
+            <div className="column-header">Learn More on the About Page</div>
             <div className="description-3">
-              Test column 3. Did you know that certain facts are interesting? I
-              found this fact out that is very interesting.
+              Not sure what to do or how to get started? Head over to the{" "}
+              <NavLink to="/about">About Page</NavLink> for common questions and
+              a description on how the search process works.
             </div>
           </div>
         </div>
