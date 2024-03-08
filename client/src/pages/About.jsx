@@ -1,9 +1,12 @@
+import AboutPage from "../components/AboutPage";
+
 export default function About() {
   return (
-    <div className="bgAboutPage">
+    <>
+      <div className="bgAboutPage"></div>
       <div className="container">
-        <h1>Test About</h1>
+        <AboutPage />
       </div>
-    </div>
+    </>
   );
 }

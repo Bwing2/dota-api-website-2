@@ -81,8 +81,11 @@ export default function ScrollText({ videoRef }) {
             <div className="column-header">Learn More on the About Page</div>
             <div className="description-3">
               Not sure what to do or how to get started? Head over to the{" "}
-              <NavLink to="/about">About Page</NavLink> for common questions and
-              a description on how the search process works.
+              <NavLink to="/about" className="about-link">
+                About Page
+              </NavLink>{" "}
+              for common questions and a description on how the search process
+              works.
             </div>
           </div>
         </div>
