@@ -138,7 +138,7 @@ td {
 }
 
 .image-text {
-  color: white;
+  color: var(--font-color);
   font-size: 24px;
 }
 
@@ -171,6 +171,14 @@ td {
 .description-2,
 .descrption-3 {
   height: 60%;
+}
+
+.about-link {
+  color: var(--secondary-color);
+}
+
+.about-link:hover {
+  color: var(--font-color);
 }
 
 /* Search Modal CSS */
@@ -265,8 +273,9 @@ td {
   font-size: 20px;
 }
 
-/* Results Page CSS */
-.bgResultsPage {
+/* Results Page and About Page CSS */
+.bgResultsPage,
+.bgAboutPage {
   width: 100%;
   min-height: 100vh;
   position: fixed;
@@ -275,7 +284,14 @@ td {
   z-index: -2;
   background-size: cover;
   background-position: center;
+}
+
+.bgResultsPage {
   background-image: url("../src/assets/images/dota-sky-background.jpg");
+}
+
+.bgAboutPage {
+  background-image: url("../src/assets/images/about-background.jpg");
 }
 
 .profile-div {
@@ -421,6 +437,47 @@ td {
 th {
   padding: 10px;
   width: 10%;
+}
+
+/* About Page CSS */
+.about-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.question-answer-div {
+  width: 80%;
+  font-size: 25px;
+  margin: 10px 0px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--bkrd-color);
+}
+
+.question {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.answer {
+  margin-bottom: 10px;
+}
+
+.about-img {
+  max-width: 80vw;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.about-img img {
+  height: 100%;
+  object-fit: cover;
 }
 
 @media (max-width: 1000px) {
