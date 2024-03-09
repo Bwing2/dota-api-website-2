@@ -3,6 +3,7 @@ const { GraphQLError } = require("graphql");
 require("dotenv").config();
 
 const secret = process.env.MY_SECRET;
+
 const expiration = "2h";
 
 module.exports = {
@@ -18,6 +19,9 @@ module.exports = {
   authMiddleware: function ({ req }) {
     let token = req.body.token || req.query.token || req.headers.authorization;
 
+    console.log(token);
+
+    console.log("Secret:", process.env.MY_SECRET);
     if (req.headers.authorization) {
       token = token.split(" ").pop().trim();
     }
