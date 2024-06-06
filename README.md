@@ -29,4 +29,4 @@ This is my second attempt at a Dota 2 API tracker website. This application util
 
 ## Usage
 
-1. Press the `Search Now!` button on the homepage to pull up a search bar
+1. Press the `Search Now!` button on the homepage to pull up a search bar 
