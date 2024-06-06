@@ -35,19 +35,19 @@ This project is my second attempt at a dynamic Dota 2 API tracker website, desig
 
 ### Home Page
 
-![Home Page](client\src\assets\images\home-page.png)
+![Home Page](client/src/assets/images/home-page.png)
 
 ### Search Menu
 
-![Search Menu](client\src\assets\images\search-menu.png)
+![Search Menu](client/src/assets/images/search-menu.png)
 
 ### Specific Profile Search Result
 
-![Specific Profile Search Result](client\src\assets\images\specific-steam-profile.png)
+![Specific Profile Search Result](client/src/assets/images/specific-steam-profile.png)
 
 ### Specific Match Search Result
 
-![Specific Match Search Result](client\src\assets\images\specific-match.png)
+![Specific Match Search Result](client/src/assets/images/specific-match.png)
 
 ### About Page
 
