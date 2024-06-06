@@ -27,12 +27,12 @@ export default function Nav() {
             <NavLink key={5} className="nav-link" to="/about">
               About
             </NavLink>
-            <NavLink key={6} className="nav-link" to="/login">
+            {/* <NavLink key={6} className="nav-link" to="/login">
               Login
             </NavLink>
             <NavLink key={7} className="nav-link" to="/signup">
               Signup
-            </NavLink>
+            </NavLink> */}
           </>
         ),
       ]}

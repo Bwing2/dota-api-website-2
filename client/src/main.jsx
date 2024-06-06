@@ -5,8 +5,8 @@ import App from "./App.jsx";
 import Home from "./pages/Home.jsx";
 import Results from "./pages/Results.jsx";
 import About from "./pages/About.jsx";
-import Login from "./pages/Login.jsx";
-import SignUp from "./pages/SignUp.jsx";
+// import Login from "./pages/Login.jsx";
+// import SignUp from "./pages/SignUp.jsx";
 import Error from "./pages/Error.jsx";
 
 const router = createBrowserRouter([
@@ -27,14 +27,14 @@ const router = createBrowserRouter([
         path: "about",
         element: <About />,
       },
-      {
-        path: "login",
-        element: <Login />,
-      },
-      {
-        path: "signUp",
-        element: <SignUp />,
-      },
+      // {
+      //   path: "login",
+      //   element: <Login />,
+      // },
+      // {
+      //   path: "signUp",
+      //   element: <SignUp />,
+      // },
     ],
   },
 ]);
