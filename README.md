@@ -51,7 +51,7 @@ This project is my second attempt at a dynamic Dota 2 API tracker website, desig
 
 ### About Page
 
-![About Page](client\src\assets\images\about-page.png)
+![About Page](client/src/assets/images/about-page.png)
 
 ## Features
 
