@@ -1,9 +1,32 @@
-# React + Vite
+# Dota API Tracker 2
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Live Deploy Link]()
 
-Currently, two official plugins are available:
+## Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# dota-api-website-2
+This is my second attempt at a Dota 2 API tracker website. This application utilizes the OpenDota API to track game statistics for certain matches or steamIDs. It is built using HTML, CSS, Javascript, React, and will implement login and signup functionality in the future.
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
+- [License](#license)
+- [Questions](#questions)
+
+## Installation
+
+
+```
+1. Clone the repository from GitHub using the command `git clone "Website link here"` in GitBash.
+
+2. Navigate to the project directory: `cd dota-api-website-2`.
+
+3. Type `code .` to open the project inside of Visual Studio Code.
+
+4. Use the command `npm run develop` to start the application in the default browser.
+```
+
+## Usage
+
+1. Press the `Search Now!` button on the homepage to pull up a search bar
